@@ -5,9 +5,16 @@ scenarios on Vamp.
 
 ## Running Monarch
 
-1. Clone to your local machine
+1. Clone to your local machine and build
 
+        $ git clone https://github.com/magneticio/monarch.git
+        $ cd monarch
         $ go build
+        $ ./monarch
+
+2. Use Docker
+
+        $ docker run -p 9012:8080 magneticio/monarch:latest
 
 ## Startup flag and environment variables
 
