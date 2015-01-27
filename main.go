@@ -24,9 +24,9 @@ func main() {
 
 	// grab environment variables, if any are set
 
-	envPort := os.Getenv("TESTER_PORT")
-	envDepHost := os.Getenv("TESTER_DEPENDS_ON_HOST")
-	envDepPort := os.Getenv("TESTER_DEPENDS_ON_PORT")
+	envPort := os.Getenv("MONARCH_PORT")
+	envDepHost := os.Getenv("MONARCH_DEPENDS_ON_HOST")
+	envDepPort := os.Getenv("MONARCH_DEPENDS_ON_PORT")
 
 	if envPort != "" {
 		*port, _ = strconv.Atoi(envPort)
