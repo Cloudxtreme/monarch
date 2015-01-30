@@ -5,4 +5,4 @@ set -x
 GOOS=linux GOARCH=386 go build
 mkdir -p target/linux_i386
 mv ./monarch target/linux_i386/
-docker build -t magneticio/monarch:0.1 .
+docker build -t magneticio/monarch:0.2 .

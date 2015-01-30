@@ -13,7 +13,6 @@ type TesterResponse struct {
 	BackendTime   int64  `json:"backendTime"`
 	EndTime       int64  `json:"endTime"`
 	RoundTripTime int64  `json:"roundTripTime"`
-	version       string `json:"version"`
 }
 
 type Hop struct {

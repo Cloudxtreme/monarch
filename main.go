@@ -15,17 +15,11 @@ var (
 )
 
 func main() {
-	version := os.Getenv("MONARCH_VERSION")
-
-	if(version == "") {
-		version = "0.1"
-	}
-
 
 	port := flag.Int("port", 8080, "Sets the port to listen on")
 	depends_on_host := flag.String("depends_on_host", "", "Sets the host of another mesos-tester this mesos-tester depends on")
 	depends_on_port := flag.Int("depends_on_port", 0, "Sets the port of another mesos-tester this mesos-tester depends on")
-
+	version := flag.String("version", "0.2","Set a fake version number for testing purposes")
 
 	flag.Parse()
 
@@ -34,6 +28,8 @@ func main() {
 	envPort := os.Getenv("MONARCH_PORT")
 	envDepHost := os.Getenv("MONARCH_DEPENDS_ON_HOST")
 	envDepPort := os.Getenv("MONARCH_DEPENDS_ON_PORT")
+	envVersion := os.Getenv("MONARCH_VERSION")
+
 
 	if envPort != "" {
 		*port, _ = strconv.Atoi(envPort)
@@ -49,6 +45,10 @@ func main() {
 		dependency.Port, _ = strconv.Atoi(envDepPort)
 	} else {
 		dependency.Port = *depends_on_port
+	}
+
+	if envVersion != "" {
+		*version = envVersion
 	}
 
 	fmt.Println("[magnetio-tester] --> Using dependency: " + dependency.Ip + ":" + strconv.Itoa(dependency.Port))
@@ -93,13 +93,13 @@ func main() {
 			response.MonarchYrs = monarchs[randomMonarchIndex].Yrs
 			response.setBackendTime()
 			response.setEndTime()
-			response.addHop(hostname, version)
+			response.addHop(hostname, *version)
 			c.JSON(200, response)
 
 		} else {
 
 			c.Bind(&monarchs)
-			statusCode, responseBody := dependency.call(monarchs, version)
+			statusCode, responseBody := dependency.call(monarchs, *version)
 			c.JSON(statusCode, responseBody)
 
 		}
