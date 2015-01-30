@@ -13,23 +13,25 @@ type TesterResponse struct {
 	BackendTime   int64  `json:"backendTime"`
 	EndTime       int64  `json:"endTime"`
 	RoundTripTime int64  `json:"roundTripTime"`
+	version       string `json:"version"`
 }
 
 type Hop struct {
 	Id        int    `json:"id"`
 	Host      string `json:"host"`
 	TimeStamp int64  `json:"timeStamp"`
+	Version	  string `json:"version"`
 }
 
 //  adds a Hop to the array of hops with regard to order
-func (t *TesterResponse) addHop(hostname string) {
+func (t *TesterResponse) addHop(hostname string, version string) {
 	var id int
 	if len(t.Hops) == 0 {
 		id = 0
 	} else {
 		id = t.Hops[len(t.Hops)-1].Id + 1
 	}
-	hop := Hop{id, hostname, t.setTime()}
+	hop := Hop{id, hostname, t.setTime(), version}
 	t.Hops = append(t.Hops, hop)
 }
 

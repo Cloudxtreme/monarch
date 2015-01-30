@@ -15,10 +15,17 @@ var (
 )
 
 func main() {
+	version := os.Getenv("MONARCH_VERSION")
+
+	if(version == "") {
+		version = "0.1"
+	}
+
 
 	port := flag.Int("port", 8080, "Sets the port to listen on")
 	depends_on_host := flag.String("depends_on_host", "", "Sets the host of another mesos-tester this mesos-tester depends on")
 	depends_on_port := flag.Int("depends_on_port", 0, "Sets the port of another mesos-tester this mesos-tester depends on")
+
 
 	flag.Parse()
 
@@ -86,13 +93,13 @@ func main() {
 			response.MonarchYrs = monarchs[randomMonarchIndex].Yrs
 			response.setBackendTime()
 			response.setEndTime()
-			response.addHop(hostname)
+			response.addHop(hostname, version)
 			c.JSON(200, response)
 
 		} else {
 
 			c.Bind(&monarchs)
-			statusCode, responseBody := dependency.call(monarchs)
+			statusCode, responseBody := dependency.call(monarchs, version)
 			c.JSON(statusCode, responseBody)
 
 		}

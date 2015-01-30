@@ -18,7 +18,7 @@ type DependentService struct {
 	Port int
 }
 
-func (d *DependentService) call(m Monarch) (int, TesterResponse) {
+func (d *DependentService) call(m Monarch, version string) (int, TesterResponse) {
 
 	var response TesterResponse
 	jsonStr, _ := json.Marshal(m)
@@ -39,7 +39,7 @@ func (d *DependentService) call(m Monarch) (int, TesterResponse) {
 
 	json.Unmarshal(body, &response)
 
-	response.addHop(hostname)
+	response.addHop(hostname, version)
 	response.setEndTime()
 	response.RoundTripTime = response.EndTime - response.BackendTime
 
