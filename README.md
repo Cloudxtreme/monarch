@@ -21,7 +21,7 @@ scenarios on Vamp.
       --port | MONARCH_PORT                             # sets the API port
       --depends_on_host | MONARCH_DEPENDS_ON_HOST       # sets the depedency's host
       --depends_on_port | MONARCH_DEPENDS_ON_PORT       # sets the depedency's port
-
+      --version | MONARCH_VERSION                       # sets the version reported. 
 ## API
 
 
