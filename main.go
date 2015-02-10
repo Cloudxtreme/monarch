@@ -65,7 +65,7 @@ func main() {
 	// create a session store
 	store := sessions.NewCookieStore([]byte("store"))
 
-	store.Options(sessions.Options{MaxAge: *cookie_timout})
+	store.Options(sessions.Options{MaxAge: *cookie_timeout})
 	r.Use(sessions.Sessions("MONARCH_SESSIONID", store))
 
 	// simple ping for health check
