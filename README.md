@@ -22,10 +22,12 @@ scenarios on Vamp.
       --depends_on_host | MONARCH_DEPENDS_ON_HOST       # sets the depedency's host
       --depends_on_port | MONARCH_DEPENDS_ON_PORT       # sets the depedency's port
       --version | MONARCH_VERSION                       # sets the version reported. 
+      --cookie_timeout | MONARCH_COOKIE_TIMEOUT         # sets the cookie timeout in second, default: 30 secs.
 ## API
 
 
         GET   /ping                     # responds with a 'pong' message
+        GET   /session                  # responds with a simple count and sets a cookie.
         GET   /randomwait               # responds after a random wait time
         GET   /host                     # responds with the hostname
         POST  /work                     # responds with a monarch and some extra data. See the rest of the documentation.

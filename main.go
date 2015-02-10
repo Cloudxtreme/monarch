@@ -21,7 +21,7 @@ func main() {
 	depends_on_host := flag.String("depends_on_host", "", "Sets the host of another mesos-tester this mesos-tester depends on")
 	depends_on_port := flag.Int("depends_on_port", 0, "Sets the port of another mesos-tester this mesos-tester depends on")
 	version := flag.String("version", "0.2", "Set a fake version number for testing purposes")
-	cookie_timout := flag.Int("cookie_timeout", 30, "Sets the cookie timout of the /session endpoint in seconds")
+	cookie_timeout := flag.Int("cookie_timeout", 30, "Sets the cookie timout of the /session endpoint in seconds")
 
 	flag.Parse()
 
@@ -54,7 +54,7 @@ func main() {
 	}
 
 	if envTimeout != "" {
-		*cookie_timout, _ = strconv.Atoi(envTimeout)
+		*cookie_timeout, _ = strconv.Atoi(envTimeout)
 	}
 
 	fmt.Println("[magnetio-tester] --> Using dependency: " + dependency.Ip + ":" + strconv.Itoa(dependency.Port))
